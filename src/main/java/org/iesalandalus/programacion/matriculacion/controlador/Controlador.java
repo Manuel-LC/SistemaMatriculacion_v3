@@ -33,7 +33,6 @@ public class Controlador {
     }
 
     public void terminar() {
-        vista.terminar();
         modelo.terminar();
     }
 

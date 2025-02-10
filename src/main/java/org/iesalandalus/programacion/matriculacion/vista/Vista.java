@@ -17,6 +17,10 @@ public class Vista {
 
     private static Controlador controlador;
 
+    public Vista() {
+        Opcion.setVista(this);
+    }
+
     public void setControlador(Controlador controlador) {
         if (controlador == null) {
             throw new NullPointerException("ERROR: El controlador no puede ser nulo.");
@@ -32,7 +36,7 @@ public class Vista {
                 Consola.mostrarMenu();
                 System.out.println();
                 opcion = Consola.elegirOpcion();
-                ejecutarOpcion(opcion);
+                opcion.ejecutar();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -46,31 +50,7 @@ public class Vista {
         System.out.println();
     }
 
-    private void ejecutarOpcion(Opcion opcion) {
-        switch (opcion) {
-            case INSERTAR_ALUMNO: insertarAlumno(); break;
-            case BUSCAR_ALUMNO: buscarAlumno(); break;
-            case BORRAR_ALUMNO: borrarAlumno(); break;
-            case MOSTRAR_ALUMNOS: mostrarAlumnos(); break;
-            case INSERTAR_ASIGNATURA: insertarAsignatura(); break;
-            case BUSCAR_ASIGNATURA: buscarAsignatura(); break;
-            case BORRAR_ASIGNATURA: borrarAsignatura(); break;
-            case MOSTRAR_ASIGNATURAS: mostrarAsignaturas(); break;
-            case INSERTAR_CICLO_FORMATIVO: insertarCicloFormativo(); break;
-            case BUSCAR_CICLO_FORMATIVO: buscarCicloFormativo(); break;
-            case BORRAR_CICLO_FORMATIVO: borrarCicloFormativo(); break;
-            case MOSTRAR_CICLOS_FORMATIVOS: mostrarCiclosFormativos(); break;
-            case INSERTAR_MATRICULA: insertarMatricula(); break;
-            case BUSCAR_MATRICULA: buscarMatricula(); break;
-            case ANULAR_MATRICULA: anularMatricula(); break;
-            case MOSTRAR_MATRICULAS: mostrarMatriculas(); break;
-            case MOSTRAR_MATRICULAS_ALUMNO: mostrarMatriculasPorAlumno(); break;
-            case MOSTRAR_MATRICULAS_CICLO_FORMATIVO: mostrarMatriculasPorCicloFormativo(); break;
-            case MOSTRAR_MATRICULAS_CURSO_ACADEMICO: mostrarMatriculasPorCursoAcademico(); break;
-        }
-    }
-
-    private static void insertarAlumno() {
+    public void insertarAlumno() {
         try {
             System.out.println();
             System.out.println("Datos del alumno");
@@ -85,7 +65,7 @@ public class Vista {
         }
     }
 
-    private static void buscarAlumno() {
+    public void buscarAlumno() {
         try {
             Alumno alumno = Consola.getAlumnoPorDni();
             alumno = controlador.buscar(alumno);
@@ -102,7 +82,7 @@ public class Vista {
         }
     }
 
-    private static void borrarAlumno() {
+    public void borrarAlumno() {
         try {
             Alumno alumno = Consola.getAlumnoPorDni();
             controlador.borrar(alumno);
@@ -113,7 +93,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarAlumnos() {
+    public void mostrarAlumnos() {
         List<Alumno> listaAlumnos = controlador.getAlumnos();
 
         listaAlumnos = listaAlumnos.stream().sorted(Comparator.comparing(Alumno::getNombre)).toList();
@@ -126,7 +106,7 @@ public class Vista {
         }
     }
 
-    private static void insertarAsignatura() {
+    public void insertarAsignatura() {
         try {
             System.out.println("Inserción de una asignatura:");
             System.out.println("=============================================================================================");
@@ -148,7 +128,7 @@ public class Vista {
         }
     }
 
-    private static void buscarAsignatura() {
+    public void buscarAsignatura() {
         try {
             Asignatura asignatura = Consola.getAsignaturaPorCodigo();
             asignatura = controlador.buscar(asignatura);
@@ -166,7 +146,7 @@ public class Vista {
         }
     }
 
-    private static void borrarAsignatura() {
+    public void borrarAsignatura() {
         try {
             Asignatura asignatura = Consola.getAsignaturaPorCodigo();
             controlador.borrar(asignatura);
@@ -178,7 +158,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarAsignaturas() {
+    public void mostrarAsignaturas() {
         List<Asignatura> listaAsignaturas = controlador.getAsignaturas();
 
         listaAsignaturas = listaAsignaturas.stream().sorted(Comparator.comparing(Asignatura::getNombre)).toList();
@@ -191,7 +171,7 @@ public class Vista {
         }
     }
 
-    private static void insertarCicloFormativo() {
+    public void insertarCicloFormativo() {
         try {
             System.out.println("Datos del ciclo formativo");
             System.out.println("=============================================================================================");
@@ -204,7 +184,7 @@ public class Vista {
         }
     }
 
-    private static void buscarCicloFormativo() {
+    public void buscarCicloFormativo() {
         try {
             CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
             cicloFormativo = controlador.buscar(cicloFormativo);
@@ -222,7 +202,7 @@ public class Vista {
         }
     }
 
-    private static void borrarCicloFormativo() {
+    public void borrarCicloFormativo() {
         try {
             CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
             controlador.borrar(cicloFormativo);
@@ -234,7 +214,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarCiclosFormativos() {
+    public void mostrarCiclosFormativos() {
         List<CicloFormativo> listaCiclos = controlador.getCiclosFormativos();
 
         listaCiclos = listaCiclos.stream().sorted(Comparator.comparing(CicloFormativo::getNombre)).toList();
@@ -247,7 +227,7 @@ public class Vista {
         }
     }
 
-    private static void insertarMatricula() {
+    public void insertarMatricula() {
         try {
             System.out.println("Inserción de una matrícula");
             System.out.println("=============================================================================================");
@@ -270,7 +250,7 @@ public class Vista {
         }
     }
 
-    private static void buscarMatricula() {
+    public void buscarMatricula() {
         try {
             Matricula matricula = Consola.getMatriculaPorIdentificador();
             matricula = controlador.buscar(matricula);
@@ -288,7 +268,7 @@ public class Vista {
         }
     }
 
-    private static void anularMatricula() {
+    public void anularMatricula() {
         try {
             if (controlador.getMatriculas().isEmpty()) {
                 System.out.println("No hay matrículas registradas para anular.");
@@ -317,7 +297,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarMatriculas() {
+    public void mostrarMatriculas() {
         List<Matricula> listaMatriculas = controlador.getMatriculas();
 
         listaMatriculas = listaMatriculas.stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion)
@@ -334,7 +314,7 @@ public class Vista {
 
     }
 
-    private static void mostrarMatriculasPorAlumno() {
+    public void mostrarMatriculasPorAlumno() {
         try {
             Alumno alumno = Consola.getAlumnoPorDni();
             alumno = controlador.buscar(alumno);
@@ -362,7 +342,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarMatriculasPorCicloFormativo() {
+    public void mostrarMatriculasPorCicloFormativo() {
         try {
             mostrarCiclosFormativos();
             CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
@@ -393,7 +373,7 @@ public class Vista {
         }
     }
 
-    private static void mostrarMatriculasPorCursoAcademico() {
+    public void mostrarMatriculasPorCursoAcademico() {
         try {
             System.out.println("Introduce el curso academico:");
             String cursoAcademico = Entrada.cadena();
