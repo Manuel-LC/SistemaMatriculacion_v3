@@ -199,9 +199,6 @@ public class Alumno {
     }
 
     private String getIniciales() {
-        if (nombre == null || nombre.isBlank()) {
-            return "";
-        }
 
         StringBuilder iniciales = new StringBuilder();
         String[] palabras = nombre.split("\\s+");
