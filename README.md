@@ -65,7 +65,7 @@ pasos a realizar:
 1. Crea el método ``leerTipoGrado`` que permitirá al usuario elegir un tipo de Grado (**Grado D o Grado E**).
 2. Crea el método ``leerModalidad`` que permitirá al usuario elegir el tipo de modalidad de un grado (**Presencial o Semipresencial**).
 3. Modifica el método ``leerGrado`` para que en función del tipo de grado del Ciclo Formativo elegido por el usuario, cree el objeto correspondiente (``Grado D o Grado E``) con los atributos necesarios.
-4. Modifica el método ``leerCicloFormativo`` para que haga uso del método nuevo método ``leerGrado``.
+4. Modifica el método ``leerCicloFormativo`` para que haga uso del nuevo método ``leerGrado``.
 5. Modifica los métodos ``getCicloFormativoPorCodigo`` y ``getAsignaturaPorCodigo`` para que los errores de compilación sean corregidos.
 6. Realiza un **commit** con la nueva clase creada.
 7. Finalmente, realiza el **push** hacia tu repositorio remoto en GitHub.

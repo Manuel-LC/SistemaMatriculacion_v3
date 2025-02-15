@@ -173,8 +173,9 @@ public class Vista {
 
     public void insertarCicloFormativo() {
         try {
-            System.out.println("Datos del ciclo formativo");
+            System.out.println("Inserción de un ciclo formativo:");
             System.out.println("=============================================================================================");
+            System.out.println("-- Datos del ciclo formativo --");
             CicloFormativo ciclo = Consola.leerCicloFormativo();
             controlador.insertar(ciclo);
             System.out.println("Ciclo formativo insertado correctamente.");

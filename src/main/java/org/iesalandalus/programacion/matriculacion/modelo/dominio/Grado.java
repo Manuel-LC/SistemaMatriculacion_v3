@@ -15,6 +15,7 @@ public abstract class Grado {
         }
 
         setNombre(nombre);
+        setIniciales();
     }
 
     public String getNombre() {
